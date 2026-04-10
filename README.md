@@ -8,6 +8,10 @@ Map your **middle mouse click** (or any other mouse button) to **Mission Control
 
 Ships with two one-liner scripts to toggle the mapping on and off. State is persistent across restarts.
 
+### Why not Mac Mouse Fix?
+
+The free version of [Mac Mouse Fix](https://macmousefix.com/) adds noticeable latency to button remaps. This project uses Hammerspoon's low-level event tap, which runs at effectively zero overhead.
+
 ---
 
 ## Quick start
