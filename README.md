@@ -28,6 +28,8 @@ On first run macOS will ask you to grant Hammerspoon **Accessibility** permissio
 
 That's it. Middle-click anywhere now triggers Mission Control. The setting survives reboots because `on.sh` also writes a flag file that `init.lua` reads at launch, and Hammerspoon is configured to auto-launch at login.
 
+You'll also see a **🖱 ON** / **🖱 OFF** toggle in the macOS menu bar — click it to flip the mapping on or off without touching the terminal.
+
 ---
 
 ## How persistence works
@@ -38,6 +40,7 @@ That's it. Middle-click anywhere now triggers Mission Control. The setting survi
 | `~/.hammerspoon/.mmtmc_enabled` | Flag file. Present = ON, absent = OFF. Read by `init.lua` at launch. |
 | `hs.autoLaunch(true)` in `init.lua` | Makes Hammerspoon itself start at login. |
 | `scripts/on.sh` / `scripts/off.sh` | Create/delete the flag file and flip live state via the `hs` CLI. |
+| Menu bar icon (🖱 ON/OFF) | Click to toggle — updates the flag file and event tap together. |
 
 So a reboot sequence looks like: login → Hammerspoon auto-launches → `init.lua` runs → sees flag file → starts the event tap.
 

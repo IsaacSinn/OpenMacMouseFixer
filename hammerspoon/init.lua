@@ -1,7 +1,7 @@
--- Middle-Mouse-To-Mission-Control
+-- OpenMacMouseFixer
 -- Hammerspoon config that maps mouse buttons to macOS actions.
 --
--- Repo: ~/Documents/GitHub/Middle-Mouse-To-Mission-Control
+-- Repo: ~/Documents/GitHub/OpenMacMouseFixer
 -- Enable/disable at runtime with the on.sh / off.sh scripts.
 --
 -- =============================================================
@@ -80,21 +80,49 @@ local function isEnabled()
   return false
 end
 
+-- =============================================================
+-- Menu bar toggle
+-- =============================================================
+local menuIcon = hs.menubar.new()
+
+local function updateMenu()
+  if tap:isEnabled() then
+    menuIcon:setTitle("🖱 ON")
+  else
+    menuIcon:setTitle("🖱 OFF")
+  end
+end
+
+local function setFlagFile(enabled)
+  if enabled then
+    local f = io.open(flagFile, "w")
+    if f then f:close() end
+  else
+    os.remove(flagFile)
+  end
+end
+
 -- Expose a tiny module so the CLI can flip state without a full reload
 mmtmc = {
   tap = tap,
   start = function()
     tap:start()
+    setFlagFile(true)
+    updateMenu()
     hs.alert.show("Mouse mapping: ON")
   end,
   stop = function()
     tap:stop()
+    setFlagFile(false)
+    updateMenu()
     hs.alert.show("Mouse mapping: OFF")
   end,
   toggle = function()
     if tap:isEnabled() then mmtmc.stop() else mmtmc.start() end
   end,
 }
+
+menuIcon:setClickCallback(function() mmtmc.toggle() end)
 
 -- Launch at login + expose `hs` CLI so on.sh / off.sh can reach us
 hs.autoLaunch(true)
@@ -107,3 +135,4 @@ if isEnabled() then
 else
   print("mmtmc: disabled at startup")
 end
+updateMenu()
