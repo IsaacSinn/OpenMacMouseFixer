@@ -1,7 +1,7 @@
--- OpenMacMouseFixer
+-- OpenMacMouseFix
 -- Hammerspoon config that maps mouse buttons to macOS actions.
 --
--- Repo: ~/Documents/GitHub/OpenMacMouseFixer
+-- Repo: ~/Documents/GitHub/OpenMacMouseFix
 -- Enable/disable at runtime with the on.sh / off.sh scripts.
 --
 -- =============================================================

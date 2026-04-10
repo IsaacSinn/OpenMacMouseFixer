@@ -1,4 +1,8 @@
-# OpenMacMouseFixer
+<p align="center">
+  <img src="openmacmousefix.png" alt="OpenMacMouseFix logo" width="1080">
+</p>
+
+# OpenMacMouseFix
 
 Map your **middle mouse click** (or any other mouse button) to **Mission Control** — or any other macOS action. Powered by [Hammerspoon](https://www.hammerspoon.org/).
 
